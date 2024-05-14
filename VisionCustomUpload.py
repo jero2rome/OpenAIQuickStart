@@ -50,8 +50,7 @@ completion = client.chat.completions.create(
             "role": "system",
             "content": "Translate extracted text to English"
         }
-    ],
-    max_tokens=1000
+    ]
 )
 
 # Print the response
