@@ -1,18 +1,17 @@
-import base64
-import requests
-import os
+from openai import OpenAI
 from dotenv import load_dotenv
+import base64
+import os
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Get the OpenAI API Key from environment variable
-api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 # Function to encode the image
 def encode_image(image_path):
-  with open(image_path, "rb") as image_file:
-    return base64.b64encode(image_file.read()).decode('utf-8')
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
 
 # Path to your image
 image_path = os.path.join(os.path.dirname(__file__), "image.jpeg")
@@ -20,42 +19,40 @@ image_path = os.path.join(os.path.dirname(__file__), "image.jpeg")
 # Getting the base64 string
 base64_image = encode_image(image_path)
 
-headers = {
-  "Content-Type": "application/json",
-  "Authorization": f"Bearer {api_key}"
-}
-
-payload = {
-  "model": "gpt-4o",
-  "messages": [
-    {
-      "role": "user",
-      "content": [
+# Create a completion request
+completion = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
         {
-          "type": "text",
-          "text": "What’s in this image?"
+            "role": "system",
+            "content": "You are an assistant that analyzes images and provides detailed information."
         },
         {
-          "type": "image_url",
-          "image_url": {
-            "url": f"data:image/jpeg;base64,{base64_image}"
-          }
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What’s in this image?"
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/jpeg;base64,{base64_image}"
+                    }
+                }
+            ]
+        },
+        {
+            "role": "system",
+            "content": "Extract text in the original language"
+        },
+        {
+            "role": "system",
+            "content": "Translate extracted text to English"
         }
-      ]
-    },
-    {
-        "role": "system",
-        "content": "Extract text in the original language"
-    },
-    {
-        "role": "system",
-        "content": "Translate extracted text to English"
-    }
-  ],
-  "max_tokens": 1000
-}
+    ],
+    max_tokens=1000
+)
 
-response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-
-print(response.json())
-
+# Print the response
+print(completion.choices[0].message)
