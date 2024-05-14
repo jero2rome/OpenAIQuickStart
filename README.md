@@ -1,4 +1,4 @@
-## Now Using gpt-4o
+## Now Using GPT-4o
 
 OPEN AI examples using GPT-4o model
 
