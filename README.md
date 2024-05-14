@@ -5,7 +5,7 @@ OPEN AI examples using GPT-4o model
 1. Download and Install Docker
 
 2. Clone the repository
-git clone https://github.com/your-repo.git
+git clone https://github.com/jero2rome/OpenAIQuickStart.git
 
 3. Setup devcontainer
 Open the repository in Visual Studio Code and select "Reopen in Container" from the Remote Explorer extension.
