@@ -1,3 +1,5 @@
 .env
 openai-env/
 image.jpeg
+__pycache__/
+QuickStarts/data/keynote_recap.mp3

@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install Zsh, curl, and git
-RUN apt-get update && apt-get install -y zsh curl git
+RUN apt-get update && apt-get install -y zsh curl git ffmpeg
 
 # Install Oh My Zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
