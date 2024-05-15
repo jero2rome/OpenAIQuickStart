@@ -5,7 +5,7 @@ from utilities import process_video
 
 # We'll be using the OpenAI DevDay Keynote Recap video. You can review the video here: https://www.youtube.com/watch?v=h02ti0Bl6zk
 # Only 30secs of the video is processed in this example to keep under the 1min limit for OpenAI API
-VIDEO_PATH = "data/keynote_recap.mp4"
+VIDEO_PATH = os.path.join(os.path.dirname(__file__), "data", "keynote_recap.mp4")
 
 # Load environment variables from .env file
 load_dotenv()
