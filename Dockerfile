@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Install Zsh and curl
+# Install Zsh, curl, and git
 RUN apt-get update && apt-get install -y zsh curl git
 
 # Install Oh My Zsh
@@ -23,4 +23,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Set the command to run when the container starts
-CMD ["zsh", "python", "ChatCompletions.py"]
+CMD ["python", "main.py"]
