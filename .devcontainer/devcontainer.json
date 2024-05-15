@@ -12,7 +12,20 @@
 		"vscode": {
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/zsh"
-			}
+			},
+			"extensions": [
+				"ms-azuretools.vscode-docker",   // Docker extension
+				"ms-python.python",               // Python extension
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				"github.copilot",
+				"github.copilot-chat",
+				"github.codespaces",
+				"github.github-vscode-theme",
+				"github.remotehub",
+				"ms-vscode.remote-repositories",
+				"ms-vscode.azure-repos"    
+			]
 		}
 	},
 
