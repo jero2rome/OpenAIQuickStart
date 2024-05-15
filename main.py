@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-# This is only the entry point of the app.
-# Look for quickstarts and files inside that folder for examples.
+# This is just the entry point of the app.
+# Look for examples directory and files inside it for examples.
 
 def list_python_files(directory):
     """List all Python files in the specified directory, excluding __init__.py."""
