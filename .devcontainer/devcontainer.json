@@ -14,13 +14,19 @@
 				"terminal.integrated.shell.linux": "/bin/zsh"
 			}
 		}
-	}
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {
 	// 	"ghcr.io/devcontainers/features/python:1": {}
 	// }
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	// Configure environment variables. Ensure that OPENAI_API_KEY is stored in your GitHub Codespaces secrets.
+	// Setting it this way allows the container environment to securely access the secrets,
+	// providing a more secure alternative to using a .env file.
+	"containerEnv": {
+		"OPENAI_API_KEY": "${{ secrets.OPENAI_API_KEY }}"
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
