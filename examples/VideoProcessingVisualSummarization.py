@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-from Utilities import process_video
+from utilities import process_video
 
 # We'll be using the OpenAI DevDay Keynote Recap video. You can review the video here: https://www.youtube.com/watch?v=h02ti0Bl6zk
 # Only 30secs of the video is processed in this example to keep under the 1min limit for OpenAI API

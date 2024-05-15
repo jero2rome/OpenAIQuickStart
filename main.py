@@ -5,19 +5,19 @@ import subprocess
 # Look for quickstarts and files inside that folder for examples.
 
 def list_python_files(directory):
-    """List all Python files in the specified directory."""
-    files = [f for f in os.listdir(directory) if f.endswith('.py')]
+    """List all Python files in the specified directory, excluding __init__.py."""
+    files = [f for f in os.listdir(directory) if f.endswith('.py') and f != '__init__.py']
     return sorted(files)
 
 def select_and_run_file(directory, files):
     """Prompt the user to select a Python file and run it."""
     while True:
-        print("\nAvailable Python scripts:")
+        print("\nAvailable examples:")
         for idx, file in enumerate(files, 1):
             print(f"{idx}. {file}")
 
         try:
-            choice = int(input("\nPlease enter the number corresponding to the file you wish to execute (or enter 0 to exit): "))
+            choice = int(input("\nPlease enter the number corresponding to the example you wish to execute (or enter 0 to exit): "))
             if choice == 0:
                 print("Exiting... Have a great day!")
                 break
@@ -31,7 +31,7 @@ def select_and_run_file(directory, files):
             print("Invalid input. Please enter a numeric value.")
 
 if __name__ == "__main__":
-    directory = 'QuickStarts'
+    directory = 'examples'
     if os.path.isdir(directory):
         python_files = list_python_files(directory)
         if python_files:

@@ -2,4 +2,4 @@
 openai-env/
 image.jpeg
 __pycache__/
-QuickStarts/data/keynote_recap.mp3
+examples/data/keynote_recap.mp3

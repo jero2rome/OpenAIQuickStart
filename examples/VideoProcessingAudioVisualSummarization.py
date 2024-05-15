@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-from Utilities import process_video
+from utilities import process_video
 
 # We'll be using the OpenAI DevDay Keynote Recap video. You can review the video here: https://www.youtube.com/watch?v=h02ti0Bl6zk
 # Only 30secs of the video is processed in this example to keep under the 1min limit for OpenAI API
@@ -22,17 +22,19 @@ transcription = client.audio.transcriptions.create(
     file=open(audio_path, "rb"),
 )
 
-print("Transcript: ", transcription.text + "\n\n")
-
+## Generate a summary with visual and audio
 response = client.chat.completions.create(
     model=MODEL,
     messages=[
-    {"role": "system", "content":"""You are generating a transcript summary. Create a summary of the provided transcription. Respond in Markdown."""},
+    {"role": "system", "content":"""You are generating a video summary. Create a summary of the provided video and its transcript. Respond in Markdown"""},
     {"role": "user", "content": [
+        "These are the frames from the video.",
+        *map(lambda x: {"type": "image_url", 
+                        "image_url": {"url": f'data:image/jpg;base64,{x}', "detail": "low"}}, base64Frames),
         {"type": "text", "text": f"The audio transcription is: {transcription.text}"}
         ],
     }
-    ],
+],
     temperature=0,
 )
 print(response.choices[0].message.content)
